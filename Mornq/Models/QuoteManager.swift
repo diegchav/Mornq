@@ -6,7 +6,7 @@
 //  Copyright © 2020 Diego Chavez. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct QuoteManager {
     
@@ -23,8 +23,23 @@ struct QuoteManager {
         Quote(text: "Tough times never last, but tough people do.", author: "Robert Schuller")
     ]
     
-    func getQuote() -> Quote {
+    let colors = [
+        UIColor.systemIndigo,
+        UIColor.systemBlue,
+        UIColor.systemGreen,
+        UIColor.systemPurple,
+        UIColor.systemTeal,
+        UIColor.systemOrange,
+        UIColor.systemRed,
+        UIColor.systemPink
+    ]
+    
+    func randomQuote() -> Quote {
         return quotes.randomElement()!
+    }
+    
+    func randomColor() -> UIColor {
+        return colors.randomElement()!
     }
     
 }

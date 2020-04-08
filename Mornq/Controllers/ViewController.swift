@@ -18,8 +18,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = quoteManager.randomColor()
     
-        let quote = quoteManager.getQuote()
+        let quote = quoteManager.randomQuote()
         quoteLabel.text = quote.text
         authorLabel.text = quote.author
     }
