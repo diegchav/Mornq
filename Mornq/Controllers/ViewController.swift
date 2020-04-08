@@ -10,14 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    
     @IBOutlet weak var quoteLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
+    
+    let quoteManager = QuoteManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        let quote = QuoteModel(text: "Challenges are what make life interesting and overcoming them is what makes life meaningful.",
-                               author: "Joshua J. Marine")
+        let quote = quoteManager.getQuote()
         quoteLabel.text = quote.text
         authorLabel.text = quote.author
     }

@@ -44,7 +44,7 @@
                     </view>
                     <connections>
                         <outlet property="authorLabel" destination="sMl-Aj-FM7" id="Qzc-yw-fqP"/>
-                        <outlet property="quoteLabel" destination="sMl-Aj-FM7" id="nNk-qK-6dG"/>
+                        <outlet property="quoteLabel" destination="vO2-f5-INs" id="LMv-6c-DEW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

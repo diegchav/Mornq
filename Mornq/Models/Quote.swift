@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct QuoteModel {
+struct Quote {
     let text: String
     let author: String
 }
