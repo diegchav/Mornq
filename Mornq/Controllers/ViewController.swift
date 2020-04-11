@@ -9,6 +9,33 @@
 import UIKit
 import Firebase
 
+extension UIColor {
+    public convenience init(hex: String) {
+        if hex.hasPrefix("#") {
+            let start = hex.index(hex.startIndex, offsetBy: 1)
+            let hexColor = String(hex[start...])
+            
+            if hexColor.count == 6 {
+                let scanner = Scanner(string: hexColor)
+                var hexNumber: UInt64 = 0
+                
+                if scanner.scanHexInt64(&hexNumber) {
+                    let r, g, b: CGFloat
+                    let a: CGFloat = 1.00
+                    r = CGFloat((hexNumber & 0xff000000) >> 24) / 255
+                    g = CGFloat((hexNumber & 0x00ff0000) >> 16) / 255
+                    b = CGFloat((hexNumber & 0x0000ff00) >> 8) / 255
+                    self.init(red: r, green: g, blue: b, alpha: a)
+                    return
+                    
+                }
+            }
+        }
+        
+        self.init(red: (94 / 255), green: (92 / 255), blue: (230 / 255), alpha: 1.00)
+    }
+}
+
 class ViewController: UIViewController {
 
     
@@ -17,16 +44,38 @@ class ViewController: UIViewController {
     
     let db = Firestore.firestore()
     
-    let quoteManager = QuoteManager()
-    
+    var colors: [Color] = []
     var quotes: [Quote] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = quoteManager.randomColor()
-        
+        loadColors()
         loadQuotes()
+    }
+    
+    private func loadColors() {
+        db.collection(K.Firestore.colorsCollectionName).getDocuments() { (querySnapshot, error) in
+            if let err = error {
+                print("Error getting documents: \(err)")
+            } else {
+                if let snapshotDocuments = querySnapshot?.documents {
+                    for document in snapshotDocuments {
+                        let data = document.data()
+                        if let hexColor = data[K.Firestore.colorsHexField] as? String {
+                            let color = Color(hex: hexColor)
+                            self.colors.append(color)
+                        }
+                    }
+                    
+                    DispatchQueue.main.async {
+                        if let color = self.colors.randomElement() {
+                            self.view.backgroundColor = UIColor(hex: color.hex)
+                        }
+                    }
+                }
+            }
+        }
     }
     
     private func loadQuotes() {

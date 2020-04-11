@@ -11,6 +11,8 @@ import Foundation
 struct K {
     
     struct Firestore {
+        static let colorsCollectionName = "colors"
+        static let colorsHexField = "hex"
         static let quotesCollectionName = "quotes"
         static let quotesTextField = "text"
         static let quotesAuthorField = "author"
