@@ -1,0 +1,6 @@
+framework module Pods_Mornq {
+  umbrella header "Pods-Mornq-umbrella.h"
+
+  export *
+  module * { export * }
+}
