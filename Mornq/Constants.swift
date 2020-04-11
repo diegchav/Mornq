@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+struct K {
+    
+    struct Firestore {
+        static let quotesCollectionName = "quotes"
+        static let quotesTextField = "text"
+        static let quotesAuthorField = "author"
+    }
+    
+}
