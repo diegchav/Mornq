@@ -7,4 +7,5 @@ target 'Mornq' do
 
   # Pods for Mornq
   pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift'
 end
