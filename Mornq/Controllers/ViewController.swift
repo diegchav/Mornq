@@ -22,9 +22,9 @@ extension UIColor {
                 if scanner.scanHexInt64(&hexNumber) {
                     let r, g, b: CGFloat
                     let a: CGFloat = 1.00
-                    r = CGFloat((hexNumber & 0xff000000) >> 24) / 255
-                    g = CGFloat((hexNumber & 0x00ff0000) >> 16) / 255
-                    b = CGFloat((hexNumber & 0x0000ff00) >> 8) / 255
+                    r = CGFloat((hexNumber & 0xff0000) >> 16) / 255
+                    g = CGFloat((hexNumber & 0x00ff00) >> 8) / 255
+                    b = CGFloat((hexNumber & 0x0000ff) >> 1) / 255
                     self.init(red: r, green: g, blue: b, alpha: a)
                     return
                     
@@ -32,7 +32,7 @@ extension UIColor {
             }
         }
         
-        self.init(red: (94 / 255), green: (92 / 255), blue: (230 / 255), alpha: 1.00)
+        self.init(red:0.39, green:0.36, blue:0.87, alpha:1.00)
     }
 }
 
@@ -70,6 +70,7 @@ class ViewController: UIViewController {
                     
                     DispatchQueue.main.async {
                         if let color = self.colors.randomElement() {
+                            print(color)
                             self.view.backgroundColor = UIColor(hex: color.hex)
                         }
                     }
