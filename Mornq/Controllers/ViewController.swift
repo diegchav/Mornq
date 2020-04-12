@@ -41,6 +41,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var quoteLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     let db = Firestore.firestore()
     
@@ -52,6 +53,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = colorManager.randomColor()
+        
+        quoteLabel.text = ""
+        authorLabel.text = ""
+        
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
         
         loadQuotes()
     }
@@ -72,6 +79,7 @@ class ViewController: UIViewController {
                     
                     DispatchQueue.main.async {
                         if let quote = self.quotes.randomElement() {
+                            self.activityIndicator.stopAnimating()
                             self.quoteLabel.text = quote.text
                             self.authorLabel.text = quote.author
                         }

@@ -32,17 +32,24 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="nqB-wM-2DO" userLabel="Activity Indicator">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="nqB-wM-2DO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9Vw-a0-xbg"/>
                             <constraint firstItem="rcN-bq-g3I" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="WWp-d9-QHN"/>
                             <constraint firstItem="rcN-bq-g3I" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xjt-Ai-ax2"/>
                             <constraint firstAttribute="trailing" secondItem="rcN-bq-g3I" secondAttribute="trailing" constant="30" id="Z8J-7Y-fco"/>
                             <constraint firstItem="rcN-bq-g3I" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="lWP-qI-Vvl"/>
+                            <constraint firstItem="nqB-wM-2DO" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="lXB-HM-PbE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="nqB-wM-2DO" id="nHv-cP-lCh"/>
                         <outlet property="authorLabel" destination="sMl-Aj-FM7" id="Qzc-yw-fqP"/>
                         <outlet property="quoteLabel" destination="vO2-f5-INs" id="LMv-6c-DEW"/>
                     </connections>
