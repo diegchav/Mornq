@@ -52,7 +52,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = colorManager.randomColor()
+        view.backgroundColor = colorManager.randomColor()
         
         quoteLabel.text = ""
         authorLabel.text = ""
@@ -63,6 +63,15 @@ class ViewController: UIViewController {
         loadQuotes()
     }
     
+    @IBAction func randomButtonPressed(_ sender: UIButton) {
+        if let quote = quotes.randomElement() {
+            let color = colorManager.randomColor()
+            view.backgroundColor = color
+            quoteLabel.text = quote.text
+            authorLabel.text = quote.author
+        }
+    }
+
     private func loadQuotes() {
         db.collection(K.Firestore.quotesCollectionName).getDocuments() { (querySnapshot, error) in
             if let err = error {
