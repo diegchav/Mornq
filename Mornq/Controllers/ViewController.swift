@@ -44,39 +44,16 @@ class ViewController: UIViewController {
     
     let db = Firestore.firestore()
     
-    var colors: [Color] = []
+    let colorManager = ColorManager()
+    
     var quotes: [Quote] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadColors()
+        self.view.backgroundColor = colorManager.randomColor()
+        
         loadQuotes()
-    }
-    
-    private func loadColors() {
-        db.collection(K.Firestore.colorsCollectionName).getDocuments() { (querySnapshot, error) in
-            if let err = error {
-                print("Error getting documents: \(err)")
-            } else {
-                if let snapshotDocuments = querySnapshot?.documents {
-                    for document in snapshotDocuments {
-                        let data = document.data()
-                        if let hexColor = data[K.Firestore.colorsHexField] as? String {
-                            let color = Color(hex: hexColor)
-                            self.colors.append(color)
-                        }
-                    }
-                    
-                    DispatchQueue.main.async {
-                        if let color = self.colors.randomElement() {
-                            print(color)
-                            self.view.backgroundColor = UIColor(hex: color.hex)
-                        }
-                    }
-                }
-            }
-        }
     }
     
     private func loadQuotes() {
